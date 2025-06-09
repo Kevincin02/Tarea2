@@ -1,0 +1,70 @@
+﻿@model Tarea2.Models.TrianguloModel
+
+<h2>Tarea 2</h2>
+<h4>Calulo de perimetro, semiperimetro, area, tipo de triangulo y calculo de los angulos</h4>
+
+<div class="mt-4 mb-4 border-top: 1px; margin: 10px 0";>
+    <form asp-action="Index" method="post">
+        <div class="mb-3">
+            <label>Lado a:</label>
+            @Html.EditorFor(m => m.a)
+        </div>
+        <div class="mb-3">
+            <label>Lado b:</label>
+            @Html.EditorFor(m => m.b)
+        </div>
+        <div class="mb-3">
+            <label>Lado c:</label>
+            @Html.EditorFor(m => m.c)
+        </div>
+        <button type="submit">Consultar</button>
+    </form>
+</div>
+
+<div style=" height: 400px;">
+    <h4>Resultado/errores</h4>
+    <!--Se muestran todas la validaciones con sumary y las validacones desigualdad triangular-->
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.ValidationMessageFor(m => m.a, "", new { @class = "text-danger" })
+
+    <!--Se muestra el perimetro con el ViewBag.Perimetro que se agrego al controller-->
+    @if (ViewBag.Perimetro != null)
+    {
+        <p><strong>Perimetro: </strong>@ViewBag.Perimetro u</p>
+    }
+    <!--Se muestra el Semiperimetro con el ViewBag.Perimetro que se agrego al controller-->
+    @if (ViewBag.SemiPerimetro != null)
+    {
+        <p><strong>SemiPerimetro: </strong>@ViewBag.SemiPerimetro u</p>
+    }
+    <!--Se muestra el Area con el ViewBag.Perimetro que se agrego al controller-->
+    @if (ViewBag.Area != null)
+    {
+        <p><strong>Area: </strong>@(((double)ViewBag.Area).ToString("F2")) u²</p>
+    }
+    <!--Se muestra el Area con el ViewBag.Perimetro que se agrego al controller-->
+    @if (ViewBag.Tipo != null)
+    {
+        <p><strong>Tipo de triangulo: </strong>@ViewBag.Tipo</p>
+    }
+    <!--Se muestra el valor del angulo Alfa con ViewBag.Alfa que se agrego al controller-->
+    @if (ViewBag.Alfa != null)
+    {
+        <p><strong>El valor de Alfa es: </strong> @(((double)ViewBag.Alfa).ToString("F2")) º</p>
+    }
+    <!--Se muestra el valor del angulo Beta con ViewBag.Beta que se agrego al controller-->
+    @if (ViewBag.Beta != null)
+    {
+        <p><strong>El Valor de Beta es: </strong>@(((double)ViewBag.Beta).ToString("F2")) º</p>
+    }
+    <!--Se muestra el valor del angulo Gamma con ViewBag.Gamma que se agrego al controller-->
+    @if (ViewBag.Gamma != null)
+    {
+        <p><strong>El valor de Gamma es: </strong>@(((double)ViewBag.Gamma).ToString("F2")) º</p>
+    }
+    <!--Se utiliza el Flixed-point para delimitar la cantidad de decimales que se muestra "F2"
+        siendo el 2 la cantidad de decimales que se desean mostrar;
+        IMPORTANTE: el ToString debe de estar dentro del ARROBA de lo contrario mostrara el codigo-->
+
+</div>
+
